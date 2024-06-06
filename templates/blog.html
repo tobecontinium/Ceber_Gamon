@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- Preloader -->
+    <div class="preloader"><div class="icon"></div></div>
+
+    <!--Page Title-->
+    <section class="page-banner" style="background-image:url({% static '/images/background/title-bg.jpg' %});">
+        <div class="auto-container">
+            <div class="inner-container clearfix">
+                <ul class="bread-crumb clearfix">
+                    <li><a href="index.html">Home</a></li>
+                    <li>Blog</li>
+                </ul>
+                <h1>Updates news</h1>
+            </div>
+        </div>
+    </section>
+    <!--End Page Title-->
+
+    <!-- News Section -->
+	{% for update in updates %}
+	<section class="news-section style-two">
+		<div class="auto-container">
+			<div class="row clearfix">
+				<!-- News Block -->
+				<div class="news-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0ms">
+					<div class="inner-box hvr-bob">
+						<div class="image">
+							<a href="{% url 'blog-single' update.id %}"><img src="{{ update.updates_news_image.url }}" alt="" /></a>
+						</div>
+						<div class="lower-content">
+							<div class="post-date">{{ update.created_at }}</div>
+							<h3><a href="{% url 'blog-single' update.id %}">{{ update.title }}</a></h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	{% endfor %}
+	<!-- End News Section -->
+{% endblock %}
